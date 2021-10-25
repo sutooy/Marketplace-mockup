@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import "inter-ui/inter.css";
 
 
-
 const BG = styled.div `
 background-color : #FFFAE6;
 height : 100vh;
@@ -10,6 +9,7 @@ display : flex;
 justify-content: center;
     align-items: center;
     flex-direction:column;
+    overflow: auto;
 `
 const Container = styled.div `
 background-color : #FFFFFF;
@@ -23,9 +23,7 @@ const ContentContainer = styled.div `
 display:flex;
 flex-direction : row;
 justify-content: space-between
-
 `
-
 const Step = styled.div `
 width : 500px;
 height : 70px;
@@ -35,13 +33,10 @@ z-index: 1;
 border-radius: 35px;
 display: flex;
 justify-content: space-around
-
 `
-
 const StepContainer = styled.div `
 display:flex;
 align-items: center;
-
 `
 const StepText = styled.p `
 font-family: "Inter", "system-ui";
@@ -55,13 +50,35 @@ height : 16px;
 width : 16px;
 align-self: center;
 `
+const BackContainer = styled.div `
+display : flex;
+margin : -1rem 0 0rem 0;
+align-items: center
 
+`
 const TitleText = styled.h1 `
 font-family: 'Montserrat', sans-serif;
-font-weight: bold;
 font-size: 36px;
 line-height: 44px;
 color:#FF8A00;
+margin:0;
+`
+const TextLine = styled.div `
+height:8px;
+width:280px;
+background: #EEEEEE;
+margin: -0.75rem 0 2rem 0;
+`
+const SmallText = styled.p `
+font-family: "Inter", "system-ui";
+font-size: 14px;
+line-height: 21px;
+opacity: 0.8;
+color:#000000;
+`
+const SmallTextGreyed = styled(SmallText)
+`
+opacity: 0.6;
 `
 const StepIndicator = styled.div `
 width : 30px;
@@ -81,89 +98,88 @@ opacity: 0.2;
 `
 const ContentColumn1 = styled.div `
 width : 40%;
-border : 1px solid red;
 `
+// border : 1px solid red;
+
 const ContentColumn2 = styled.div `
 width : 30%;
-border : 1px solid green;
-
 `
+// border : 1px solid green;
+
 const ContentColumn3 = styled.div `
 width : 30%;
 border : 1px solid blue;
 
 `
-const Checkbox = styled.input.attrs (props => ({
-        // we can define static props
-        type: "checkbox",
-    
- 
-    }))`
+const Checkbox = styled.input.attrs(props => ({
+    // we can define static props
+    type: "checkbox",
+
+
+}))
+`
     width: 200px;
     height: 200px;
-    filter: invert(66%) sepia(85%) saturate(442%) hue-rotate(92deg) brightness(90%) contrast(93%);
-
-
+    accent-color: #1BD97B;
     
     `
-
-    
-// const Input = styled.input.attrs(props => ({
-//     // we can define static props
-//     type: "text",
-//     patern: /\S+@\S+\.\S+/,
-
-//     // or we can define dynamic ones
-//     borderColor: props.borderColor,
-// }))
-// `width:90%;
-//     font-size: 1em;
-//     border: 2px solid;
-//     border-color: ${props => props.borderColor};
-//     &:hover {
-//         border-color: blue;
-//     }
-//     &:active{
-//         border-color: blue;
-//     }
-//     border-radius: 3px;
-
-//     /* here we use the dynamically computed prop */
-//     margin: ${props => props.size};
-//     padding: ${props => props.size};
-//   `
 const InputContainer = styled.div `
 border: 1px solid ${props => props.borderColor || '#CCCCCC'};
-`
-const Input = styled.input `
-width:90%;
 height: 60px;
+width:90%;
+border-radius: 3px;
+padding : 0 15px;
+display:flex;
+margin-top:1rem;
+align-items: center;
+justify-content: space-between;
+
+`
+const Label = styled.p `
+color : ${props => props.color};
+font-weight: 500;
+font-size: 13px;
+font-family: "Inter", "system-ui";
+margin-bottom: 0;
+`
+const Warning = styled.p `
+color : red;
+font-size: 0.75rem;
+margin:0 0 0 1rem;
+`
+
+const Input = styled.input.attrs(props => ({
+ 
+}))
+` 
+width:90%;
     font-size: 1rem;
-    border: 1px solid;
+    font-weight:700;
+    color: #2D2A40;
+
+    border: none;
     border-color: ${props => props.borderColor || '#CCCCCC'};
     border-radius: 3px;
     outline:none;
-   
+   font-family: "Inter", "system-ui";
+
     `
-    // &:valid{
-    //     border: 10px solid blue;
-    // }
-    // &:invalid{
-    //     border: 10px solid red;
-    // }
-const InputTextarea = styled.textarea `width:90%;
+
+const InputTextarea = styled.textarea `
+width:95%;
     height: 120px;
         font-size: 1rem;
         border: 1px solid;
         border-color: ${props => props.borderColor || '#CCCCCC' };
         outline:none;
-
+        font-family: "Inter", "system-ui";
         border-radius: 3px;
-      
-    
-      `;
+        background-color:transparent;
+        margin-top:1rem;
+            `
 
 export {
+    Label,
     Input,
     InputTextarea,
     BG,
@@ -181,4 +197,9 @@ export {
     ContentContainer,
     InputContainer,
     Checkbox,
+    SmallText,
+    Warning,
+    TextLine,
+    BackContainer,
+    SmallTextGreyed,
 };
