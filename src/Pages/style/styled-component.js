@@ -11,6 +11,11 @@ justify-content: center;
     flex-direction:column;
     overflow: auto;
 `
+const CenterContainer = styled(BG)`
+background-color : transparent;
+height: auto;
+width: 100%;
+`
 const Container = styled.div `
 background-color : #FFFFFF;
 height : 550px;
@@ -24,6 +29,11 @@ display:flex;
 flex-direction : row;
 justify-content: space-between
 `
+const SmallContentContainer = styled(ContentContainer) `
+width : 70%;
+padding-right:20px;
+`
+
 const Step = styled.div `
 width : 500px;
 height : 70px;
@@ -53,7 +63,32 @@ align-self: center;
 const BackContainer = styled.div `
 display : flex;
 margin : -1rem 0 0rem 0;
-align-items: center
+align-items: center;
+cursor: pointer;
+width:10rem;
+`
+const SubmitButton = styled.button `
+width:100%;
+height: 60px;
+background: #FF8A00;
+color: #FFFFFF;
+box-shadow: 2px 10px 20px rgba(255, 138, 0, 0.1);
+border-radius: 4px;
+display:flex;
+justify-content: center;
+align-items: center;
+cursor:pointer;
+font-family: "Inter", "system-ui";
+font-size:18px;
+outline : none;
+border : none;
+margin-top:30px;
+`
+const chooseButton = styled.button `
+background: ${props => props.background};
+border: 1px solid ${props => props.borderColor || '#CCCCCC'};
+width:100%;
+height: 60px;
 
 `
 const TitleText = styled.h1 `
@@ -63,23 +98,40 @@ line-height: 44px;
 color:#FF8A00;
 margin:0;
 `
+const MidTitleText = styled(TitleText) `
+font-size: 24px;
+line-height: 29px;
+`
 const TextLine = styled.div `
 height:8px;
 width:280px;
 background: #EEEEEE;
 margin: -0.75rem 0 2rem 0;
 `
+const Separator = styled.div `
+height:1px;
+width:80px;
+background: #D8D8D8;
+margin: ${props => props.margin};
+`
+
 const SmallText = styled.p `
 font-family: "Inter", "system-ui";
 font-size: 14px;
 line-height: 21px;
-opacity: 0.8;
+margin:${props => props.margin};;
+opacity: ${props => props.opacity};
 color:#000000;
 `
 const SmallTextGreyed = styled(SmallText)
+`opacity: 0.6;
 `
-opacity: 0.6;
+const SmallTextBold = styled(SmallText)
 `
+font-weight:700;
+opacity: 1;
+`
+
 const StepIndicator = styled.div `
 width : 30px;
 height : 30px;
@@ -97,32 +149,29 @@ const StepIndicatorBlur = styled(StepIndicator)
 opacity: 0.2;
 `
 const ContentColumn1 = styled.div `
-width : 40%;
+width : 50%;
 `
 // border : 1px solid red;
 
 const ContentColumn2 = styled.div `
-width : 30%;
+width : 45%;
 `
 // border : 1px solid green;
 
 const ContentColumn3 = styled.div `
 width : 30%;
-border : 1px solid blue;
-
+Height: 32rem;
+border-left: 1px solid rgba(255, 138, 0, 0.2);
+padding-left:19px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+margin-top:2.5rem;
 `
-const Checkbox = styled.input.attrs(props => ({
-    // we can define static props
-    type: "checkbox",
-
-
-}))
+const Space = styled.span `
+color : transparent;
 `
-    width: 200px;
-    height: 200px;
-    accent-color: #1BD97B;
-    
-    `
+
 const InputContainer = styled.div `
 border: 1px solid ${props => props.borderColor || '#CCCCCC'};
 height: 60px;
@@ -133,7 +182,21 @@ display:flex;
 margin-top:1rem;
 align-items: center;
 justify-content: space-between;
+background:${props => props.background };
+`
+const chooseContainer = styled(InputContainer) `
+border-radius: 0px;
+border: 1px solid black;
+display:flex;
 
+background: ${props => props.borderColor || 'transparent'};
+`
+const InfoContainer = styled(InputContainer) `
+border : none;
+height: 20px;
+width: 100%;
+padding : 0;
+margin-top:8px;
 `
 const Label = styled.p `
 color : ${props => props.color};
@@ -141,6 +204,14 @@ font-weight: 500;
 font-size: 13px;
 font-family: "Inter", "system-ui";
 margin-bottom: 0;
+opacity : ${props => props.opacity || 1};
+`
+const LabelMedium = styled(Label) `
+font-size: 16px;
+opacity : ${props => props.opacity || 1};
+color : ${props => props.color};
+margin:0;
+
 `
 const Warning = styled.p `
 color : red;
@@ -156,27 +227,27 @@ width:90%;
     font-size: 1rem;
     font-weight:700;
     color: #2D2A40;
-
     border: none;
     border-color: ${props => props.borderColor || '#CCCCCC'};
     border-radius: 3px;
     outline:none;
    font-family: "Inter", "system-ui";
-
     `
 
 const InputTextarea = styled.textarea `
-width:95%;
+    width:88%;
     height: 120px;
-        font-size: 1rem;
-        border: 1px solid;
-        border-color: ${props => props.borderColor || '#CCCCCC' };
-        outline:none;
-        font-family: "Inter", "system-ui";
-        border-radius: 3px;
-        background-color:transparent;
-        margin-top:1rem;
-            `
+    font-weight:700;
+    font-size: 1rem;
+    border: 1px solid;
+    border-color: ${props => props.borderColor || '#CCCCCC' };
+    outline:none;
+    font-family: "Inter", "system-ui";
+    border-radius: 3px;
+    background-color:transparent;
+    margin-top:1rem;
+    padding:20px;
+    `
 
 export {
     Label,
@@ -196,10 +267,19 @@ export {
     ContentColumn3,
     ContentContainer,
     InputContainer,
-    Checkbox,
     SmallText,
     Warning,
     TextLine,
     BackContainer,
     SmallTextGreyed,
+    MidTitleText,
+    SubmitButton,
+    InfoContainer,
+    SmallTextBold,
+    SmallContentContainer,
+    Space,
+    LabelMedium,
+    chooseContainer,
+    Separator,
+    CenterContainer,
 };
