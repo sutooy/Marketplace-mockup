@@ -89,6 +89,7 @@ color:#FF8A00;
 margin-left:1rem;
 @media (max-width: 425px) {
     font-size: 12px;
+    margin-left:0.1rem;
 
   }
 `

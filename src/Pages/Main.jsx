@@ -376,7 +376,7 @@ return (
                             {page === 1 ?  <SubmitButton type="submit"
                             // onClick={()=>{setPage(2)}}
                             >Continue to Payment</SubmitButton> 
-                            : (page === 2 ? (fee.Payment ?<SubmitButton type="submit"
+                            : (page === 2 ? (fee.Payment && fee.Ekspedisi ?<SubmitButton type="submit"
                             onClick={()=>{setPage(3)}}
                             >{`Pay with ${fee.Payment}`}</SubmitButton> : null) : null)} 
                            
