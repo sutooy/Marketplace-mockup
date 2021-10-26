@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import Payment from './Payment'
-import Finish from './Finish'
+/* eslint-disable no-useless-escape */
+import React, {useState} from 'react'
 import Arrow from './/style/image/keyboard_arrow_right.svg'
 import Square from './/style/image/square-regular.png'
 import SquareCheck from './/style/image/check-square-regular.png'
@@ -21,14 +20,15 @@ function Main() {
 function AddressWatched({ control }) {
 const Address = useWatch({
 control,
-name: "Address", // without supply name will watch the entire form, or ['firstName', 'lastName'] to watch both
-defaultValue: 0 // default value before the render
+name: "Address", 
+defaultValue: 0 ,
 });
 
-return <div>character : {Address.length} </div>; // only re-render at the component level, when firstName changes
+return (Address ? (<div> character : {120 - Address.length} </div>) : null)
+; 
 }
 
-const { register, handleSubmit, getValues,setValue,control,formState: { errors, isDirty } } = useForm({
+const { register, handleSubmit, getValues,setValue,control,formState: { errors, } } = useForm({
 defaultValues: {
 Email: localStorage.getItem("Email"),
 Phone: localStorage.getItem("Phone"),
@@ -153,7 +153,7 @@ return (
                         </InputContainer>
                         {errors.Phone?.type==='minLength' && <Warning>Minimum number is 6</Warning> }
                         {errors.Phone?.type==='maxLength' && <Warning>Maximum number is 12</Warning> }
-                        {errors.Phone?.type==='required' && <Warning>Phone number is required</Warning> }
+                        {errors.Phone?.type==='required' && <Warning>Please input your phone number</Warning> }
                         {errors.Phone?.type==='pattern'&& <Warning>Only Accepet Number (0-9) & Character( - , + , () )
                         </Warning> }
 
@@ -167,6 +167,8 @@ return (
                         {/* <h1>{getValues("Address").length} </h1>
                         <h1>{addressLength.address?.length}</h1> */}
                         <AddressWatched style={{margin:'-2rem 0 0 0 '}} control={control} />
+                        {errors.Address?.type === 'required' && <Warning>Please input your address</Warning>}
+
                         {/* {`${delivery.text}`} */}
                     </ContentColumn1>
                     <ContentColumn2>
@@ -334,10 +336,6 @@ return (
                         </div>
                         </CenterContainer>)  }
 
-
-
-
-
                     <ContentColumn3>
                         <div className="ContentColumn3--Up">
                             <MidTitleText>Summary</MidTitleText>
@@ -379,26 +377,12 @@ return (
                             : (page === 2 ? (fee.Payment && fee.Ekspedisi ?<SubmitButton type="submit"
                             onClick={()=>{setPage(3)}}
                             >{`Pay with ${fee.Payment}`}</SubmitButton> : null) : null)} 
-                           
-                                                        {/* disabled={fee.Ekspedisi ? "false" : "true"} */}
-
                         </div>
                     </ContentColumn3>
                 </ContentContainer>
             </form>
-
         </div>
-
-
-       
-        
-       
-
-
-
-
     </Container>
-
 </BG>
 )
 }
