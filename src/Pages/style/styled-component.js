@@ -15,6 +15,8 @@ const CenterContainer = styled(BG)`
 background-color : transparent;
 height: auto;
 width: 100%;
+overflow: auto;
+
 `
 const Container = styled.div `
 background-color : #FFFFFF;
@@ -22,16 +24,41 @@ height : 550px;
 width : 1100px;
 box-shadow: 2px 10px 20px rgba(255, 138, 0, 0.1);
 border-radius: 4px;
-padding : 1.8rem 2.5rem 1.25rem 2.5rem
+padding : 1.8rem 2.5rem 1.25rem 2.5rem;
+@media (max-width: 1024px) {
+    width : 900px;
+    height : auto;
+    overflow: auto;
+  }
+  @media (max-width: 768px) {
+    width : 650px;
+     }
+     @media (max-width: 425px) {
+        width : 280px;
+        padding : 3rem 1rem ;
+       
+      }
 `
 const ContentContainer = styled.div `
 display:flex;
 flex-direction : row;
-justify-content: space-between
+justify-content: space-between;
+@media (max-width: 425px) {
+    flex-direction : column;
+}
+
 `
 const SmallContentContainer = styled(ContentContainer) `
 width : 70%;
 padding-right:20px;
+@media (max-width: 768px) {
+    display: flex;
+    flex-direction : column;
+  }
+  @media (max-width: 425px) {
+    width : 100%;
+
+  }
 `
 
 const Step = styled.div `
@@ -42,7 +69,13 @@ background-color : #FFFAE6;
 z-index: 1;
 border-radius: 35px;
 display: flex;
-justify-content: space-around
+justify-content: space-around;
+@media (max-width: 768px) {
+    width : 350px;
+  }
+  @media (max-width: 425px) {
+    width : 280px;
+  }
 `
 const StepContainer = styled.div `
 display:flex;
@@ -54,6 +87,10 @@ font-size: 16px;
 line-height: 19px;
 color:#FF8A00;
 margin-left:1rem;
+@media (max-width: 425px) {
+    font-size: 12px;
+
+  }
 `
 const StepImg = styled.img `
 height : 16px;
@@ -84,13 +121,7 @@ outline : none;
 border : none;
 margin-top:30px;
 `
-const chooseButton = styled.button `
-background: ${props => props.background};
-border: 1px solid ${props => props.borderColor || '#CCCCCC'};
-width:100%;
-height: 60px;
 
-`
 const TitleText = styled.h1 `
 font-family: 'Montserrat', sans-serif;
 font-size: 36px;
@@ -107,6 +138,10 @@ height:8px;
 width:280px;
 background: #EEEEEE;
 margin: -0.75rem 0 2rem 0;
+@media (max-width: 425px) {
+    width : 200px;
+
+  }
 `
 const Separator = styled.div `
 height:1px;
@@ -150,11 +185,23 @@ opacity: 0.2;
 `
 const ContentColumn1 = styled.div `
 width : 50%;
+@media (max-width: 768px) {
+    width : 80%;
+  }
+  @media (max-width: 425px) {
+    width : 100%;
+  }
 `
 // border : 1px solid red;
 
 const ContentColumn2 = styled.div `
 width : 45%;
+@media (max-width: 768px) {
+    width : 80%;
+  }
+  @media (max-width: 425px) {
+    width : 100%;
+  }
 `
 // border : 1px solid green;
 
@@ -167,6 +214,14 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 margin-top:2.5rem;
+@media (max-width: 768px) {
+    width : 30%;
+  }
+  @media (max-width: 425px) {
+    width : 100%;
+    padding-left:0;
+
+  }
 `
 const Space = styled.span `
 color : transparent;
